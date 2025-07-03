@@ -1,0 +1,34 @@
+@use "variables" as *;
+.main {
+  padding: $spacing-xl 0;
+  flex: 1;
+
+  &__container {
+    width: 100%;
+    max-width: $max-width-container;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: $spacing-xl;
+
+    @media (max-width: $breakpoint-lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__articles {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
+
+  &__sidebar {
+    @media (max-width: $breakpoint-lg) {
+      display: none;
+    }
+  }
+}

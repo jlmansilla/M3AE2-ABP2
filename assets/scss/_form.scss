@@ -1,0 +1,82 @@
+@use "variables" as *;
+.form {
+  background-color: $color-white;
+  padding: $spacing-xl;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+
+  &__title {
+    font-size: $font-size-h3;
+    margin-bottom: $spacing-xl;
+    color: $color-heading;
+    text-align: center;
+  }
+
+  &__group {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+  }
+
+  &__input {
+    width: 100%;
+    padding: $spacing-md;
+    border: 1px solid $color-border;
+    border-radius: $border-radius-sm;
+    font-family: inherit;
+    font-size: $font-size-base;
+    transition: border-color $transition-fast;
+
+    &:focus {
+      outline: none;
+      border-color: $color-primary;
+    }
+
+    // Modificador para input con error
+    &--error {
+      border-color: $color-error;
+    }
+  }
+
+  &__textarea {
+    @extend .form__input;
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  &__error {
+    color: $color-error;
+    font-size: $font-size-sm;
+    margin-top: $spacing-xs;
+    display: none;
+
+    &--visible {
+      display: block;
+    }
+  }
+
+  &__button {
+   width: 100%;
+  display: inline-block;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-white;
+  background-color: $color-primary;
+  border: none;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: background-color $transition-fast;
+
+    // Modificador para botón primario
+    &--primary {
+    background-color: $color-primary;
+    color: $color-white;
+    }
+  }
+}

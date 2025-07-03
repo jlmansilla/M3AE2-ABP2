@@ -1,0 +1,360 @@
+// ==========================================================================
+// BASE STYLES
+// ==========================================================================
+
+/**
+ * 1. Reset y normalización
+ * 2. Tipografía base
+ * 3. Elementos HTML básicos
+ * 4. Utilidades globales
+ */
+
+// 1. RESET Y NORMALIZACIÓN
+// --------------------------------------------------------------------------
+@use 'variables'; 
+
+/**
+ * Reset básico para eliminar márgenes y paddings por defecto
+ * y establecer el modelo de caja border-box para todos los elementos
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/**
+ * Elimina el estilo de lista en elementos ul, ol
+ */
+ul,
+ol {
+  list-style: none;
+}
+
+/**
+ * Elimina el subrayado predeterminado de los enlaces
+ * y hereda el color del texto para consistencia
+ */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/**
+ * Mejora el comportamiento de las imágenes
+ */
+img,
+picture,
+video,
+iframe,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/**
+ * Elimina el estilo por defecto de los botones y campos de formulario
+ */
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/**
+ * Normaliza los elementos interactivos
+ */
+button {
+  cursor: pointer;
+  padding: 0;
+}
+
+/**
+ * Elimina las flechas de los inputs number en algunos navegadores
+ */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// 2. TIPOGRAFÍA BASE
+// --------------------------------------------------------------------------
+
+/**
+ * Establece la tipografía base y el tamaño de fuente responsive
+ */
+html {
+  font-size: 62.5%; // 1rem = 10px para facilitar cálculos
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: variables.$font-family-primary;
+  font-size: variables.$font-size-base;
+  line-height: variables.$line-height-normal;
+  color: variables.$color-text;
+  background-color: variables.$color-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Estilos base para encabezados
+ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: variables.$font-family-heading;
+  font-weight: variables.$font-weight-bold;
+  line-height: variables.$line-height-tight;
+  color: variables.$color-heading;
+  margin-bottom: variables.$spacing-md;
+}
+
+/**
+ * Estilos para párrafos y elementos de texto
+ */
+p {
+  margin-bottom: variables.$spacing-md;
+  line-height: variables.$line-height-relaxed;
+}
+
+/**
+ * Elementos de texto especiales
+ */
+strong {
+  font-weight: variables.$font-weight-bold;
+}
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: variables.$font-size-sm;
+}
+
+// 3. ELEMENTOS HTML BÁSICOS
+// --------------------------------------------------------------------------
+
+/**
+ * Estilos básicos para tablas
+ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: variables.$spacing-lg;
+}
+
+th,
+td {
+  padding: variables.$spacing-sm variables.$spacing-md;
+  text-align: left;
+  border-bottom: 1px solid variables.$color-border;
+}
+
+th {
+  font-weight: variables.$font-weight-bold;
+  background-color: variables.$color-background-light;
+}
+
+/**
+ * Estilos básicos para formularios
+ */
+fieldset {
+  border: 1px solid variables.$color-border;
+  border-radius: variables.$border-radius-sm;
+  padding: variables.$spacing-md;
+  margin-bottom: variables.$spacing-lg;
+}
+
+legend {
+  padding: 0 variables.$spacing-sm;
+  font-weight: variables.$font-weight-bold;
+}
+
+label {
+  display: block;
+  margin-bottom: variables.$spacing-xs;
+  font-weight: variables.$font-weight-medium;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: variables.$spacing-sm variables.$spacing-md;
+  border: 1px solid variables.$color-border;
+  border-radius: variables.$border-radius-sm;
+  transition: border-color variables.$transition-fast;
+
+  &:focus {
+    border-color: variables.$color-primary;
+    outline: none;
+  }
+}
+
+textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+// 4. UTILIDADES GLOBALES
+// --------------------------------------------------------------------------
+
+/**
+ * Clase contenedora para centrar contenido y establecer un ancho máximo
+ */
+.container {
+  width: 100%;
+  max-width: variables.$max-width-container;
+  margin: 0 auto;
+  padding: 0 variables.$spacing-md;
+}
+
+/**
+ * Helper para texto truncado con puntos suspensivos
+ */
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**
+ * Helper para elementos ocultos visualmente pero accesibles
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/**
+ * Estados globales
+ */
+.is-hidden {
+  display: none !important;
+}
+
+.is-visible {
+  display: block !important;
+}
+
+.is-loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid variables.$color-border;
+    border-top-color: variables.$color-primary;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/**
+ * Clases de alineación
+ */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/**
+ * Clases para manejo de márgenes
+ */
+.mt-auto {
+  margin-top: auto;
+}
+
+.mb-auto {
+  margin-bottom: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
+  margin-right: auto;
+}
+
+/**
+ * Clases para flexbox
+ */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/**
+ * Media object pattern
+ */
+.media {
+  display: flex;
+  align-items: flex-start;
+
+  &__figure {
+    margin-right: variables.$spacing-md;
+  }
+
+  &__body {
+    flex: 1;
+  }
+}
+
+/**
+ * Clearfix helper
+ */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}

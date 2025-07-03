@@ -1,0 +1,43 @@
+@use "variables" as *;
+.header {
+  background-color: $color-background;
+  padding: $spacing-md 0;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: $z-index-fixed;
+
+  &__container {
+    width: 100%;
+    max-width: $max-width-container;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+
+    &-image {
+      height: 40px;
+      width: auto;
+    }
+  }
+
+  // Modificador para header oscuro
+  &--dark {
+    background-color: $color-dark;
+    color: $color-white;
+
+    .header__logo {
+      color: $color-white;
+    }
+  }
+}

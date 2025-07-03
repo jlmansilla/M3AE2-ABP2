@@ -1,0 +1,58 @@
+@use "variables" as *;
+@use 'sass:color';
+
+.nav {
+  &__list {
+    display: flex;
+    gap: $spacing-lg;
+    list-style: none;
+  }
+
+  &__item {
+    position: relative;
+  }
+
+  &__link {
+    color: $color-text;
+    font-weight: $font-weight-medium;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $border-radius-sm;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-primary;
+      background-color: rgba($color-primary, 0.1);
+    }
+
+    // Modificador para enlace activo
+    &--active {
+      color: $color-white;
+      background-color: $color-primary;
+
+      &:hover {
+        background-color: color.adjust($color-primary, $lightness: -10%);
+      }
+    }
+  }
+
+  // Modificador para navegación móvil
+  &--mobile {
+    @media (max-width: $breakpoint-md) {
+      .nav__list {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: $color-white;
+        padding: $spacing-md;
+        box-shadow: $shadow-md;
+        display: none;
+      }
+
+      &.is-open .nav__list {
+        display: flex;
+      }
+    }
+  }
+}
